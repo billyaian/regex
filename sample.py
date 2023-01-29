@@ -49,6 +49,19 @@ def test_pathological(n):
     t_regex = time.time() - t0
     return t_py, t_regex
 
+def test_pathological(n):
+    p = 'a?' * n + 'a' * n
+    nfa_python = re.compile(p)
+    nfa_me = regex.compile(p)
+    string = 'a' * n
+    t0 = time.time()
+    m = nfa_python.match(string)
+    t_py = time.time() - t0
+    t0 = time.time()
+    m = nfa_me.match(string)
+    t_regex = time.time() - t0
+    return t_py, t_regex
+
 def timing_pathological():
     MAX = 26
     f = open('time_pathological.dat', 'w')
